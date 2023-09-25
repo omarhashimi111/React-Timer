@@ -1,0 +1,24 @@
+.timer{
+    position: absolute;
+    top: 100px;
+    left:40%;
+    width: 280px;
+    text-align: center;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap:2rem;
+}
+.buttons button{
+    width: 75px;
+    border: 1px solid sandybrown;
+    box-shadow: 0 0 3px;
+    transition: all 300ms;
+    border-radius: 8px;
+}
+.buttons button:hover{
+    background-color: brown;
+    color: #fff;
+}
