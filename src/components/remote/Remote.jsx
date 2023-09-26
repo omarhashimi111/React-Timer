@@ -1,10 +1,10 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect} from 'react'
 import "./remote.css"
 import { ContextState } from '../context/Context'
 
 function Remote() {
     
-    const { session , breaks , increase , decrease } = useContext(ContextState)
+    const {isPlay , session , breaks , increase , decrease } = useContext(ContextState)
 
     let min = 0
     let hr = 0
@@ -33,8 +33,24 @@ function Remote() {
     }else{
         breakHr = breaks.hr
     }
-
-    
+    useEffect(()=>{
+        let button = document.getElementById("session-increment")
+        let button2 = document.getElementById("dec-session")
+        let button3 = document.getElementById("break-increment")
+        let button4 = document.getElementById("dec-break")
+        if(isPlay){
+            button.disabled = true
+            button2.disabled = true
+            button4.disabled = true
+            button3.disabled = true
+        }else{
+             button.disabled = false
+             button2.disabled = false
+             button4.disabled = false
+             button3.disabled = false
+        }
+    },[isPlay])
+   
 
   return (
     <div className='remote'>
@@ -44,7 +60,7 @@ function Remote() {
             <div className="control">
                 <button id='session-increment' onClick={() => increase("session-increment")}><i className="bi bi-arrow-up"></i></button>
                 <div id="session">{hr}:{min}</div>
-                <button onClick={() => decrease("session")}><i className="bi bi-arrow-down"></i></button>
+                <button id='dec-session' onClick={() => decrease("session")}><i className="bi bi-arrow-down"></i></button>
             </div>
         </div>
 
@@ -53,7 +69,7 @@ function Remote() {
             <div className="control">
                 <button id='break-increment' onClick={() => increase("break-increment")}><i className="bi bi-arrow-up"></i></button>
                 <div id="break">{breakHr}:{breakMin}</div>
-                <button onClick={() => decrease("break")}><i className="bi bi-arrow-down"></i></button>
+                <button id='dec-break' onClick={() => decrease("break")}><i className="bi bi-arrow-down"></i></button>
             </div>
         </div>
     </div>

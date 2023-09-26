@@ -62,6 +62,16 @@ export default (state,action)=>{
                     breaks: {...state.breaks,min: state.breaks.min - 1}
                 }
             }
+        case "PLAY":
+            return {
+                ...state,
+                isPlay: !state.isPlay
+            }
+        case "RESET":
+            return {
+                ...state,
+                isPlay: false
+            }
         default:
             return state
     }
