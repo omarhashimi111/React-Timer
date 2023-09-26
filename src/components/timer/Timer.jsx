@@ -4,11 +4,11 @@ import { ContextState } from '../context/Context'
 
 function Timer() {
 
-  const { breaks , session } = useContext(ContextState)
+  const { isPlay, pplay, res , breaks , session } = useContext(ContextState)
 
   const [sessionOrBreak,setSessionOrBreak] = useState(false)
   
-  const [isPlay, setIsPlay] = useState(false)
+ /*  const [isPlay, setIsPlay] = useState(false) */
   const [sec, setSec] = useState(0)
   const [min, setMin] = useState(session.min)
   const [hr, setHr] = useState(session.hr)
@@ -30,7 +30,6 @@ function Timer() {
   
 
   useEffect(()=>{
-    var what
     if(sessionOrBreak==false){
       setMin(session.min)
       setHr(session.hr)
@@ -46,7 +45,8 @@ function Timer() {
   useEffect(()=>{
     let interval 
     if(isPlay){
-      interval = setTimeout(play, 1000);
+      interval = setTimeout(play, 100);
+
     }
    
     return ()=>{
@@ -73,7 +73,7 @@ function Timer() {
   }
 
   function playPause(){
-    setIsPlay(!isPlay)
+    pplay()
   }
 
   // Reset
@@ -81,7 +81,7 @@ function Timer() {
     setMin(session.min)
     setHr(session.hr)
     setSec(0)
-    setIsPlay(false)
+    res()
   }
   
   const playButton = (isPlay ? (<i className="bi bi-pause">Stop</i>): <i className="bi bi-play">Start</i>)

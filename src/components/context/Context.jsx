@@ -10,7 +10,8 @@ const initialState = {
     breaks: {
         min: 3,
         hr: 0
-    }
+    },
+    isPlay: false
 }
 export const ContextState = createContext(initialState)
 
@@ -33,6 +34,17 @@ export const ContextProvider = ({ children }) => {
             payload: id
         })
     }
+    function pplay(){
+        dispatch({
+            type: "PLAY"
+        })
+    }
+    function res(){
+        dispatch({
+            type: "RESET"
+        })
+    }
+
 
 
 
@@ -42,7 +54,10 @@ export const ContextProvider = ({ children }) => {
             session: state.session,
             breaks: state.breaks,
             increase: increase,
-            decrease
+            decrease,
+            isPlay: state.isPlay,
+            pplay,
+            res
         }}>
             {children}
         </ContextState.Provider>
