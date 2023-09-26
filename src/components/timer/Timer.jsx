@@ -45,7 +45,9 @@ function Timer() {
   useEffect(()=>{
     let interval 
     if(isPlay){
+
       interval = setTimeout(play, 1000);
+
 
     }
    
